@@ -34,6 +34,7 @@
                     <property name="height_request">170</property>
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
+                    <property name="window_placement">bottom-right</property>
                     <property name="shadow_type">in</property>
                     <child>
                       <object class="GtkViewport" id="viewport1">

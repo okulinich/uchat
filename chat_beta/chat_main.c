@@ -29,9 +29,11 @@ int main(int argc, char *argv[]) {
 	get_widgets_from_xml(&wid);
 
     /*add grid and message field to the struct because we need to write new
-    messages as labels in the message field*/
+    messages as labels in the message field
+    and automaticly scroll down window after receiving messages*/
     param.grid = wid.grid1;
     param.user_message_entry = wid.user_message_entry;
+    param.message_scroll_window = wid.message_scroll_window;
 
     /**CONNETCTING objects to the signals*/
     g_signal_connect(G_OBJECT(wid.button_send), "clicked", G_CALLBACK(on_button_send_clicked), &param);

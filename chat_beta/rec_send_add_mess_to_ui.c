@@ -23,6 +23,9 @@ void add_new_mess_to_ui(char *message, int side, struct message_field *param) {
     gtk_label_set_xalign (GTK_LABEL(param->labels[param->row]), 0.0);
     gtk_grid_attach (GTK_GRID(param->grid), param->labels[param->row], side, param->row, 1, 1);
     gtk_widget_show(param->labels[param->row]);
+    gtk_entry_set_text(GTK_ENTRY(param->user_message_entry), (gchar *)"");  //replace user input with empty string
+    usleep(30000);   //required because of unknown reason (scroll doesn't work without it)
+    scroll_window_to_last_message(param);
     param->row++;
 }
 
@@ -38,4 +41,10 @@ void receive_from_serv_add_to_ui(struct thread_data *data1, struct client_data *
     printf(">(someone)> %s", cld->buf_serv);    //debug info (doesn't work -> why?)
     /*ADD message from server to the message field in UI*/
     add_new_mess_to_ui(cld->buf_serv, 0, data1->param);
+}
+
+//scroll down message field to the last message sent
+void scroll_window_to_last_message(struct message_field *param) {
+    GtkAdjustment* adjustment = gtk_scrolled_window_get_vadjustment(GTK_SCROLLED_WINDOW(param->message_scroll_window));
+    gtk_adjustment_set_value(adjustment, gtk_adjustment_get_upper(adjustment));
 }

@@ -75,6 +75,7 @@ struct message_field {
     GtkWidget *grid;                //table in message field
     GtkWidget **labels;             //labels reserved to display messages
     GtkWidget *user_message_entry;  //entry field where user types his messages
+    GtkWidget *message_scroll_window;//scrollbar that allows us to scroll through the messages
 };
 
 struct ui_widgets {
@@ -166,7 +167,8 @@ void add_new_mess_to_ui(char *message, int side, struct message_field *param);
 void send_mess_from_ui_to_server(struct thread_data *data1, struct client_data *cld);
 //checks whole list returned on the previous step and searching for correct variant of data
 void connect_to_the_server(struct client_data *cld);
-
+//scroll down message field to the last message sent
+void scroll_window_to_last_message(struct message_field *param);
 
 
 /*  *   *   *   *   *   *   *   *   S E R V E R    P A R T  *   *   *   *   *   *   *    */

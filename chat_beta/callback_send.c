@@ -5,7 +5,7 @@ void on_button_send_clicked(GtkButton *b, gpointer user_data) {
     struct message_field *param = user_data;    //here parameters for adding new messages to the message field stored
 
     if(strlen(param->tmp) > 0) {                                //if user typed something to the entry field
-        printf("user typed message > %s\n", param->tmp);        //denug info
+        printf("\nuser typed message > %s\n", param->tmp);      //denug info
         write(param->fds[1], param->tmp, strlen(param->tmp));   //writes message from entry field to [1]file desriptor from pipe
         /*following function adds new label with text from message to the messages field*/
         add_new_mess_to_ui(param->tmp, 1, param);
